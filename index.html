@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Game</title>
+</head>
+
+
+<!-- google font  -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+    
+<!-- daisyUi  -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+
+<!-- tailwind css  -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    clifford: '#da373d',
+                }
+            }
+        }
+    }
+</script>
+
+    <style>
+
+
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.anton-regular {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+    </style>
+
+
+<body class=".poppins-regular bg-[#010313] flex justify-center">
+
+    <main style="background: linear-gradient(180.00deg, 
+    rgb(232, 85, 222) -7.901%,rgb(108, 14, 235) 36.636%,rgba(84, 0, 238, 0.34) 68.886%);"
+     class="min-h-screen  w-2/6 ">
+        <!-- home section  -->
+
+        <section id="home-section" class="flex flex-col items-center justify-center " >
+            <div  class="flex flex-col justify-center items-center min-h-screen gap-10 text-center">
+                <h1 class="text-6xl text-white font-bold poppins-bold ">Alphabet Clash</h1>
+                <p class="text-white text-2xl">Unleash Your Keyboard Kung Fu : Press “Enter” to Play</p>
+                <button class="btn " onclick="play()">Play Now</button>
+            </div>
+
+        </section>
+
+         <!-- play ground  -->
+          <section id="play-ground" class="flex items-center justify-center mt-20 hidden ">
+
+            <!-- artboard  -->
+
+           <div class="flex flex-col justify-center items-center gap-10  ">
+            <div class="artboard artboard-horizontal phone-6 bg-[#ffffffCC] rounded-lg  border-8 border-slate-800  ">
+                <div class="flex  justify-center"><h3 class=" bg-black  text-white px-8 py-3 rounded-b-lg inline-block">Don't watch keyboard while Plain</h3></div>
+               <div >
+                <p id="letter" class="text-8xl font-bold  text-center  mt-10 "> Y </p>
+               </div>
+            </div>
+            <!-- keybord  -->
+            <div id="kbd-parent">
+                <div class="my-1 flex w-full justify-center gap-1">
+                    <kbd id="q" class="kbd cursor-pointer ">q</kbd>
+                    <kbd id="w" class="kbd cursor-pointer ">w</kbd>
+                    <kbd id="e" class="kbd cursor-pointer ">e</kbd>
+                    <kbd id="r" class="kbd cursor-pointer ">r</kbd>
+                    <kbd id="t" class="kbd cursor-pointer ">t</kbd>
+                    <kbd id="y" class="kbd cursor-pointer ">y</kbd>
+                    <kbd id="u" class="kbd cursor-pointer ">u</kbd>
+                    <kbd id="i" class="kbd cursor-pointer ">i</kbd>
+                    <kbd id="o" class="kbd cursor-pointer ">o</kbd>
+                    <kbd id="p" class="kbd cursor-pointer ">p</kbd>
+                </div>
+                <div class="my-1 flex w-full justify-center gap-1">
+                    <kbd id="a" class="kbd cursor-pointer ">a</kbd>
+                    <kbd id="s" class="kbd cursor-pointer ">s</kbd>
+                    <kbd id="d" class="kbd cursor-pointer ">d</kbd>
+                    <kbd id="f" class="kbd cursor-pointer ">f</kbd>
+                    <kbd id="g" class="kbd cursor-pointer ">g</kbd>
+                    <kbd id="h" class="kbd cursor-pointer ">h</kbd>
+                    <kbd id="j" class="kbd cursor-pointer ">j</kbd>
+                    <kbd id="k" class="kbd cursor-pointer ">k</kbd>
+                    <kbd id="l" class="kbd cursor-pointer ">l</kbd>
+                </div>
+                <div class="my-1 flex w-full justify-center gap-1">
+                    <kbd id="x" class="kbd cursor-pointer ">x</kbd>
+                    <kbd id="c" class="kbd cursor-pointer ">c</kbd>
+                    <kbd id="v" class="kbd cursor-pointer ">v</kbd>
+                    <kbd id="z" class="kbd cursor-pointer ">z</kbd>
+                    <kbd id="b" class="kbd cursor-pointer ">b</kbd>
+                    <kbd id="n" class="kbd cursor-pointer ">n</kbd>
+                    <kbd id="m" class="kbd cursor-pointer ">m</kbd>
+                    <kbd id="/" class="kbd cursor-pointer ">/</kbd>
+                </div>
+            </div>
+
+            <!-- button  -->
+            <div class="flex  justify-between w-full ">
+                <!-- life btn  -->
+                <button class="btn bg-purple-700 border-none text-white text-2xl">
+                    Life
+                    <img src="Group 23.svg" alt="">
+                    <span id="life">5</span>
+                </button>
+                <!-- score btn  -->
+                <button class="btn  bg-purple-700 border-none text-white text-2xl ">
+                    Score
+                    <img src="monetization_on.svg" alt="">
+                    <span id="score">0</span>
+                </button>
+            </div>
+           </div>
+
+            <div>
+
+            </div>
+          </section>
+          <!-- Total score  -->
+           <section id="total-score" class="hidden">
+
+            <div class="flex flex-col justify-center items-center min-h-screen ">
+                <div class="bg-purple-400 p-10 rounded-lg text-white text-center gap-4 flex flex-col">
+                    <h2 class="text-4xl font-bold text-white" >Score : <span id="total-point"> 14 </span> </h2>
+                    <div><button class="btn  font-bold text-xl" onclick="playAgain()">Play Again</button></div>
+                    <p class="text-xl font-bold ">Practice will make you Pro</p>
+                </div>
+            </div>
+
+
+           </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
